@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expressions.ComplexTask.LinqProvider", "Expressions.ComplexTask.LinqProvider\Expressions.ComplexTask.LinqProvider.csproj", "{AC1429FD-5B04-48A8-99EB-4A40A5F39D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expressions.ComplexTask.Tests", "Expressions.ComplexTask.Tests\Expressions.ComplexTask.Tests.csproj", "{CE9BA576-09FD-4241-A846-BBCB42992941}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC1429FD-5B04-48A8-99EB-4A40A5F39D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1429FD-5B04-48A8-99EB-4A40A5F39D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1429FD-5B04-48A8-99EB-4A40A5F39D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1429FD-5B04-48A8-99EB-4A40A5F39D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE9BA576-09FD-4241-A846-BBCB42992941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9BA576-09FD-4241-A846-BBCB42992941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9BA576-09FD-4241-A846-BBCB42992941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9BA576-09FD-4241-A846-BBCB42992941}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE0BF0E9-6C0E-4C02-A4A7-0AB7ED721667}
+	EndGlobalSection
+EndGlobal
