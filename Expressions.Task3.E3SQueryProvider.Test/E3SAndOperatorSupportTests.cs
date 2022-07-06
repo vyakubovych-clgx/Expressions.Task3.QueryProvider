@@ -10,6 +10,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
 using Expressions.Task3.E3SQueryProvider.Models.Entities;
 using Xunit;
 
@@ -17,6 +18,8 @@ namespace Expressions.Task3.E3SQueryProvider.Test
 {
     public class E3SAndOperatorSupportTests
     {
+        private readonly FtsRequestGenerator _ftsRequestGenerator = new FtsRequestGenerator("http://localhost");
+
         #region SubTask 3: AND operator support
 
         [Fact]
@@ -34,8 +37,11 @@ namespace Expressions.Task3.E3SQueryProvider.Test
               ],
              */
 
-            // todo: create asserts for this test by yourself, because they will depend on your final implementation
-            throw new NotImplementedException("Please implement this test and the appropriate functionality");
+            var translated = translator.Translate(expression);
+            var request = _ftsRequestGenerator.GenerateRequestUrl<EmployeeEntity>(translated);
+            var decodedQuery = HttpUtility.UrlDecode(request.Query);
+
+            Assert.Contains("\"statements\":[{\"query\":\"Workstation:(EPRUIZHW006)\"},{\"query\":\"Manager:(John*)\"}]", decodedQuery);
         }
 
         #endregion

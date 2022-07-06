@@ -33,6 +33,13 @@ namespace Expressions.Task3.E3SQueryProvider
 
                 return node;
             }
+
+            if (node.Method.DeclaringType == typeof(string))
+            {
+                TranslateToStringBuilder(node.Object, node.Arguments[0], node.Method.Name);
+                return node;
+            }
+
             return base.VisitMethodCall(node);
         }
 
@@ -41,16 +48,17 @@ namespace Expressions.Task3.E3SQueryProvider
             switch (node.NodeType)
             {
                 case ExpressionType.Equal:
-                    if (node.Left.NodeType != ExpressionType.MemberAccess)
-                        throw new NotSupportedException($"Left operand should be property or field: {node.NodeType}");
+                    if (node.Left.NodeType == ExpressionType.MemberAccess)
+                        TranslateToStringBuilder(node.Left, node.Right);
+                    else
+                        TranslateToStringBuilder(node.Right, node.Left);
 
-                    if (node.Right.NodeType != ExpressionType.Constant)
-                        throw new NotSupportedException($"Right operand should be constant: {node.NodeType}");
-
+                    break;
+                case ExpressionType.AndAlso:
                     Visit(node.Left);
-                    _resultStringBuilder.Append("(");
+                    _resultStringBuilder.Append(";");
                     Visit(node.Right);
-                    _resultStringBuilder.Append(")");
+
                     break;
 
                 default:
@@ -62,7 +70,7 @@ namespace Expressions.Task3.E3SQueryProvider
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            _resultStringBuilder.Append(node.Member.Name).Append(":");
+            _resultStringBuilder.Append(node.Member.Name);
 
             return base.VisitMember(node);
         }
@@ -75,5 +83,22 @@ namespace Expressions.Task3.E3SQueryProvider
         }
 
         #endregion
+
+        private void TranslateToStringBuilder(Expression member, Expression constant, string method = null)
+        {
+            Visit(member);
+            _resultStringBuilder.Append(":");
+            _resultStringBuilder.Append("(");
+            AppendAsteriskForMethod(method, "Contains", "EndsWith");
+            Visit(constant);
+            AppendAsteriskForMethod(method, "Contains", "StartsWith");
+            _resultStringBuilder.Append(")");
+        }
+
+        private void AppendAsteriskForMethod(string method, params string[] methodsToAddAsterisk)
+        {
+            if (methodsToAddAsterisk.Contains(method))
+                _resultStringBuilder.Append("*");
+        }
     }
 }
