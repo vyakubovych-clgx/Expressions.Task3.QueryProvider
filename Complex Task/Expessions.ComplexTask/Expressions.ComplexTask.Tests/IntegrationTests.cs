@@ -34,7 +34,7 @@ public class IntegrationTests
     {
         var expectedMaterialIds = new[] {50, 54};
         var actualMaterials = _materials.Where(m => m.CatalogueId == 44).ToList();
-        CollectionAssert.AreEquivalent(expectedMaterialIds, actualMaterials.Select(m => m.Id));
+        Assert.That(expectedMaterialIds, Is.EquivalentTo(actualMaterials.Select(m => m.Id)));
     }
 
     [Test]
@@ -62,7 +62,7 @@ public class IntegrationTests
     {
         var expectedMaterialIds = new[] { 45, 46, 49, 50, 54 };
         var actualMaterials = _materials.Where(m => m.CatalogueId != 41).ToList();
-        CollectionAssert.AreEquivalent(expectedMaterialIds, actualMaterials.Select(m => m.Id));
+        Assert.That(expectedMaterialIds, Is.EquivalentTo(actualMaterials.Select(m => m.Id)));
     }
 
     [Test]
@@ -70,7 +70,7 @@ public class IntegrationTests
     {
         var expectedAssessmentIds = new[] { 25, 26, 27 };
         var actualAssessments = _assessments.Where(a => a.Rating > 4).ToList();
-        CollectionAssert.AreEquivalent(expectedAssessmentIds, actualAssessments.Select(a => a.Id));
+        Assert.That(expectedAssessmentIds, Is.EquivalentTo(actualAssessments.Select(a => a.Id)));
     }
 
     [Test]
@@ -78,7 +78,7 @@ public class IntegrationTests
     {
         var expectedAssessmentIds = new[] { 25, 26, 27, 28 };
         var actualAssessments = _assessments.Where(a => a.Rating >= 4).ToList();
-        CollectionAssert.AreEquivalent(expectedAssessmentIds, actualAssessments.Select(a => a.Id));
+        Assert.That(expectedAssessmentIds, Is.EquivalentTo(actualAssessments.Select(a => a.Id)));
     }
 
     [Test]
@@ -86,7 +86,7 @@ public class IntegrationTests
     {
         var expectedAssessmentIds = new[] { 28, 29 };
         var actualAssessments = _assessments.Where(a => a.Rating < 5).ToList();
-        CollectionAssert.AreEquivalent(expectedAssessmentIds, actualAssessments.Select(a => a.Id));
+        Assert.That(expectedAssessmentIds, Is.EquivalentTo(actualAssessments.Select(a => a.Id)));
     }
 
     [Test]
@@ -94,7 +94,7 @@ public class IntegrationTests
     {
         var expectedAssessmentIds = new[] {25, 26, 27, 28, 29};
         var actualAssessments = _assessments.Where(a => a.Rating <= 5).ToList();
-        CollectionAssert.AreEquivalent(expectedAssessmentIds, actualAssessments.Select(a => a.Id));
+        Assert.That(expectedAssessmentIds, Is.EquivalentTo(actualAssessments.Select(a => a.Id)));
     }
 
     [Test]
@@ -102,7 +102,7 @@ public class IntegrationTests
     {
         var expectedMaterialIds = new[] { 50, 54 };
         var actualMaterials = _materials.Where(m => 44 == m.CatalogueId).ToList();
-        CollectionAssert.AreEquivalent(expectedMaterialIds, actualMaterials.Select(m => m.Id));
+        Assert.That(expectedMaterialIds, Is.EquivalentTo(actualMaterials.Select(m => m.Id)));
     }
 
     [Test]
