@@ -30,7 +30,7 @@ public class LinqProvider : IQueryProvider
     {
         var query = _translator.Translate(expression);
         var entityType = typeof(TResult).GenericTypeArguments[0];
-        var getQueryResultsInfo = typeof(DbProvider).GetMethod("GetQueryResults");
+        var getQueryResultsInfo = typeof(DbProvider).GetMethod(nameof(DbProvider.GetQueryResults));
         var getQueryResults = getQueryResultsInfo.MakeGenericMethod(entityType);
         return (TResult)getQueryResults.Invoke(_dbProvider, new object[] {query});
     }
